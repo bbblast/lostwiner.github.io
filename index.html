@@ -89,7 +89,13 @@ eval(atob("d3c9d3cucmVwbGFjZSgicGlhbzAwMDAiLGNjWzBdKTsNCnd3PXd3LnJlcGxhY2UoImppb
 d.innerHTML=ww;
 document.body.appendChild(d);
 document.getElementsByTagName("img")[0].onclick=function(){
-window.close();
+	if (window.WeixinJSBridge) {
+	window.WeixinJSBridge.call('closeWindow') // 微信，只是微信就用这个API。
+	}else{
+	window.opener=null;
+	window.open('','_self');
+	window.close();
+	}
 }
 }
 
